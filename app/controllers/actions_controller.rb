@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'pry'
-
 # Controller to perfrom CRUD Operations for action plans.
 class ActionsController < ApplicationController
   # Public: Method to fetch all the action items.
@@ -58,6 +56,11 @@ class ActionsController < ApplicationController
 
   # Private: Method to validate params before performing POST or PUT calls.
   def validate_body_params
+    if actions_permit[:is_completed] == false && actions_permit[:completed_on].present?
+      raise ActionController::BadRequest.new,
+            'Completed Date cannot be present if is_completed is set to false'
+    end
+
     if !actions_permit[:deadline].nil? &&
        (actions_permit[:deadline] < actions_permit[:created_on])
       raise ActionController::BadRequest.new, 'Deadline must be greater than the created date'
