@@ -1,24 +1,18 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# About
+- The microservice (REST API) embedded on MYSQL performs CRUD Operations for the goal tracking.
+- This REST API would be used by the Goal Tracker UI (Coming Soon).
 
-Things you may want to cover:
+# Things you require to run this miocroservice:
 
-* Ruby version
+- Ruby version 2.7
+- RSpec
+- Bundler
+- Postman
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Instructions:
+- Clone the repo
+- run bundle install
+- rails s
+- Hit the endpoints through Postman 
