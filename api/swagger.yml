@@ -137,21 +137,28 @@ paths:
 definitions:
   ActionsBody:
     type: "object"
+    required:
+      - goal
+      - createdOn
+      - isCompleted
     properties:
       goal:
         type: "string"
         example: "Workout for 2 hours everyday."
       createdOn:
         type: "string"
+        format: "date-time"
         example: "2021-02-03T12:00:00+00:00"
       deadline:
         type: "string"
+        format: "date-time"
         example: "2021-02-03T12:00:00+00:00"
       isCompleted:
         type: "boolean"
         example: true
       completedOn:
         type: "string"
+        format: "date-time"
         example: "2021-02-03T12:00:00+00:00"
   ActionsBodyResponse:
     type: "object"
