@@ -1,0 +1,17 @@
+AllCops:
+  Exclude:
+    - 'db/*'
+    - 'bin/*'
+
+# Customize rules
+Metrics/LineLength:
+  Max: 100
+
+MethodLength:
+  Max: 40
+
+Metrics/AbcSize:
+  Enabled: false
+
+BlockLength:
+  Max: 120
