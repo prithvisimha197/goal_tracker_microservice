@@ -128,6 +128,60 @@ RSpec.describe 'Actions', type: :request do
       put '/actions/1', params: body_params, as: :json
       expect(response.status).to eq(204)
     end
+
+    context 'when is_completed is set to false and completed date is passed' do
+      let(:invalid_body) do
+        {
+          goal: 'read',
+          created_on: '2021-02-03T12:00:00.000Z',
+          deadline: '2031-02-03T12:00:00.000Z',
+          is_completed: false,
+          completed_on: '2042-02-03T12:00:00.000Z'
+        }
+      end
+
+      it 'raises Bad Request Error' do
+        expect do
+          put '/actions/1', params: invalid_body, as: :json
+        end.to raise_error(ActionController::BadRequest)
+      end
+    end
+
+    context 'when created date is greater than the deadline' do
+      let(:invalid_body) do
+        {
+          goal: 'read',
+          created_on: '2021-02-03T12:00:00.000Z',
+          deadline: '2011-02-03T12:00:00.000Z',
+          is_completed: true,
+          completed_on: '2042-02-03T12:00:00.000Z'
+        }
+      end
+
+      it 'raises Bad Request Error' do
+        expect do
+          put '/actions/1', params: invalid_body, as: :json
+        end.to raise_error(ActionController::BadRequest)
+      end
+    end
+
+    context 'when created date is greater than the completed date' do
+      let(:invalid_body) do
+        {
+          goal: 'read',
+          created_on: '2021-02-03T12:00:00.000Z',
+          deadline: '2031-02-03T12:00:00.000Z',
+          is_completed: true,
+          completed_on: '2011-02-03T12:00:00.000Z'
+        }
+      end
+
+      it 'raises Bad Request Error' do
+        expect do
+          put '/actions/1', params: invalid_body, as: :json
+        end.to raise_error(ActionController::BadRequest)
+      end
+    end
   end
 
   describe 'DELETE /destroy' do
