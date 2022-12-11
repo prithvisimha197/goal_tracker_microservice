@@ -4,7 +4,7 @@
 - The microservice (REST API) embedded on MYSQL performs CRUD Operations for the goal tracking.
 - This REST API would be used by the Goal Tracker UI (Coming Soon).
 
-# Things you require to run this miocroservice:
+# Things you require to run this microservice:
 
 - Ruby version 2.7
 - RSpec
